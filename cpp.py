@@ -4,7 +4,7 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["https://quizbucket.netlify.app"], supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "https://quizbucket.netlify.app"}})
 
 # Get Supabase credentials from environment variables
 url = os.environ.get("SUPABASE_URL")
@@ -37,3 +37,8 @@ def send_c_marks():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.before_request
+def handle_options():
+    if request.method == 'OPTIONS':
+        return '', 200

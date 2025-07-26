@@ -21,10 +21,21 @@ def send_marks():
         if not all([name, subject, marks]):
             return jsonify({"error": "Missing data"}), 400
 
-        # Update the subject column dynamically
-        result = supabase.table("Web_db").update({subject: marks}).eq("name", name).execute()
+        # Check if name exists
+        existing = supabase.table("Web_db").select("name").eq("name", name).execute()
 
-        return jsonify({"message": f"{subject} marks updated for {name}!"})
+        if existing.data:
+            # Update existing
+            result = supabase.table("Web_db").update({subject: marks}).eq("name", name).execute()
+            msg = f"{subject} marks updated for {name}!"
+        else:
+            # Insert new with subject marks
+            result = supabase.table("Web_db").insert({"name": name, subject: marks}).execute()
+            msg = f"{name} added with marks in {subject}!"
+
+        return jsonify({"message": msg})
+
     except Exception as e:
         print("ERROR:", e)
         return jsonify({"error": str(e)}), 500
+

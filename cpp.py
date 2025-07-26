@@ -18,6 +18,9 @@ def send_c_marks():
         data = request.get_json()
         name = data.get("name")
         marks = data.get("marks")
+        if not isinstance(marks, int):
+            return jsonify({"error": "Marks must be an integer"}), 400
+
 
         # Basic validation
         if not all([name, marks]):

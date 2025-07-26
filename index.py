@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from supabase import Client,create_client
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 url = os.environ.get("SUPABASE_URL")
 key = os.environ.get("SUPABASE_KEY")

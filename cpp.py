@@ -32,7 +32,7 @@ def send_c_marks():
         if not all([name, marks]):
             return jsonify({"error": "Missing name or marks"}), 400
 
-        result = supabase.table("Web_db").update({'"C & Cpp"': marks}).eq("name", name).execute()
+        result = supabase.table("Web_db").update({'"C&Cpp"': marks}).eq("name", name).execute()
 
         return jsonify({"message": f"C & Cpp marks updated for {name}!"})
     except Exception as e:

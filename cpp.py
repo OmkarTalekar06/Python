@@ -15,6 +15,7 @@ supabase = create_client(url, key)
 @app.route('/sendmarks', methods=['POST'])
 def send_c_marks():
     try:
+        print("Running updated code with C_Cpp key")
         data = request.get_json()
         name = data.get("name")
         marks = data.get("marks")

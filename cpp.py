@@ -15,7 +15,7 @@ def send_marks():
     try:
         data = request.get_json()
         name = data.get("name")
-        subject = data.get("subject")
+        subject = data.get("C & Cpp")
         marks = data.get("marks")
 
         if not all([name, subject, marks]):

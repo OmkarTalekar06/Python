@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-url = os.environ.get("https://yhcmkjyhnzpotyhkybaw.supabase.co")
-key = os.environ.get("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY21ranlobnpwb3R5aGt5YmF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNzcwMzUsImV4cCI6MjA2ODk1MzAzNX0.ntDfFrMXQTArpZ8sUQXCvmgd6gMOyWK9h3NaE4GSoNA")
+url = os.environ.get("SUPABASE_URL")
+key = os.environ.get("SUPABASE_KEY")
 supabase = create_client(url, key)
 
 @app.route('/sendname', methods=['POST'])

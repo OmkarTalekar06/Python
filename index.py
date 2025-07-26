@@ -12,10 +12,14 @@ supabase = create_client(url, key)
 
 @app.route('/sendname', methods=['POST'])
 def send_name():
-    data = request.get_json()
-    name = data.get("name")
-    if not name:
-        return jsonify({"message": "No name provided"}), 400
-    
-    result = supabase.table("Web_db").insert({"name":name}).execute()
-    return jsonify({"message:":"Name Saved sucessfully!"})
+    try:
+        data = request.get_json()
+        name = data.get("name")
+        if not name:
+            return jsonify({"message": "No name provided"}), 400
+
+        result = supabase.table("Web_db").insert({"name": name}).execute()
+        return jsonify({"message": "Name Saved successfully!"})
+    except Exception as e:
+        print("ERROR:", e)
+        return jsonify({"error": str(e)}), 500

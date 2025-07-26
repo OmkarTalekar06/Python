@@ -24,7 +24,7 @@ def send_c_marks():
             return jsonify({"error": "Missing name or marks"}), 400
 
         # Column name is exactly C&Cpp (no quotes or spaces)
-        result = supabase.table("Web_db").update({"C&Cpp": marks}).eq("name", name).execute()
+        result = supabase.table("Web_db").update({"C_Cpp": marks}).eq("name", name).execute()
 
         return jsonify({"message": f"C&Cpp marks updated for {name}!"})
     except Exception as e:

@@ -45,6 +45,25 @@ def send_c_marks():
         print("ERROR in sendmarks:", e)
         return jsonify({"error": str(e)}), 500
 
+@app.route('/sendpythonmarks', method=['POST'])
+def send_python_marks():
+    try:
+        data = request.get_json()
+        name = data.get("name")
+        marks = data.get("marks")
+
+        if not all([name, isinstance(marks, int)]):
+            return jsonify({"error":"Invalid name or marks"}), 400
+        
+        supabase.table("Web_db").update({"Python":marks}).eq("name",name).execute()
+        return jsonify({"message": f"Python marks updated for {name}!"})
+    
+    except Exception as e:
+        print("Error in send marks", e)
+        return jsonify({"error":str(e)}), 500
+
+
+
 @app.before_request
 def handle_options():
     if request.method == 'OPTIONS':

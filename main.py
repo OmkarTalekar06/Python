@@ -52,6 +52,10 @@ def send_python_marks():
         name = data.get("name")
         marks = data.get("marks")
 
+        print("Received data:", data)
+        print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
+
+
         if not all([name, isinstance(marks, int)]):
             return jsonify({"error":"Invalid name or marks"}), 400
         

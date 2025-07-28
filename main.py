@@ -45,7 +45,7 @@ def send_c_marks():
         print("ERROR in sendmarks:", e)
         return jsonify({"error": str(e)}), 500
 
-@app.route('/sendpythonmarks', method=['POST'])
+@app.route('/sendpythonmarks', methods=['POST'])
 def send_python_marks():
     try:
         data = request.get_json()

@@ -29,7 +29,7 @@ def send_name():
         print("ERROR in sendname:", e)
         return jsonify({"error": str(e)}), 500
 
-@app.route('/sendmarks', methods=['POST'])
+@app.route('/sendcppmarks', methods=['POST'])
 def send_c_marks():
     try:
         data = request.get_json()

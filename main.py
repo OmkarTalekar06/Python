@@ -50,7 +50,7 @@ def send_python_marks():
     try:
         data = request.get_json()
         name = data.get("name")
-        marks = data.get("marks")
+        marks = data.get("marks_py")
 
         print("Received data:", data)
         print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
@@ -60,6 +60,69 @@ def send_python_marks():
             return jsonify({"error":"Invalid name or marks"}), 400
         
         supabase.table("Web_db").update({"Python":marks}).eq("name",name).execute()
+        return jsonify({"message": f"Python marks updated for {name}!"})
+    
+    except Exception as e:
+        print("Error in send marks", e)
+        return jsonify({"error":str(e)}), 500
+
+@app.route('/sendWebdevmarks', methods=['POST'])
+def send_webdev_marks():
+    try:
+        data = request.get_json()
+        name = data.get("name")
+        marks = data.get("marks_wd")
+
+        print("Received data:", data)
+        print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
+
+
+        if not all([name, isinstance(marks, int)]):
+            return jsonify({"error":"Invalid name or marks"}), 400
+        
+        supabase.table("Web_db").update({"Web - Dev":marks}).eq("name",name).execute()
+        return jsonify({"message": f"Python marks updated for {name}!"})
+    
+    except Exception as e:
+        print("Error in send marks", e)
+        return jsonify({"error":str(e)}), 500
+    
+@app.route('/sendassemblymarks', methods=['POST'])
+def send_assembly_marks():
+    try:
+        data = request.get_json()
+        name = data.get("name")
+        marks = data.get("marks_as")
+
+        print("Received data:", data)
+        print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
+
+
+        if not all([name, isinstance(marks, int)]):
+            return jsonify({"error":"Invalid name or marks"}), 400
+        
+        supabase.table("Web_db").update({"Assembly":marks}).eq("name",name).execute()
+        return jsonify({"message": f"Python marks updated for {name}!"})
+    
+    except Exception as e:
+        print("Error in send marks", e)
+        return jsonify({"error":str(e)}), 500
+    
+@app.route('/sendffmarks', methods=['POST'])
+def send_ff_marks():
+    try:
+        data = request.get_json()
+        name = data.get("name")
+        marks = data.get("marks_ff")
+
+        print("Received data:", data)
+        print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
+
+
+        if not all([name, isinstance(marks, int)]):
+            return jsonify({"error":"Invalid name or marks"}), 400
+        
+        supabase.table("Web_db").update({"Full - Form":marks}).eq("name",name).execute()
         return jsonify({"message": f"Python marks updated for {name}!"})
     
     except Exception as e:

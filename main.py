@@ -94,7 +94,7 @@ def send_assembly_marks():
     try:
         data = request.get_json()
         name = data.get("name")
-        marks = data.get("marks_as")
+        marks = data.get("marks")
 
         print("Received data:", data)
         print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
@@ -115,7 +115,7 @@ def send_ff_marks():
     try:
         data = request.get_json()
         name = data.get("name")
-        marks = data.get("marks_ff")
+        marks = data.get("marks")
 
         print("Received data:", data)
         print("Name:", name, "| Marks:", marks, "| Type of marks:", type(marks))
